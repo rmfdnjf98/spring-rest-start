@@ -3,6 +3,7 @@ package com.metacoding.springv2._core.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -20,6 +21,9 @@ public class SecurityConfig {
     // 시큐리티 필터 등록
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
+        // 서버가 클라이언트에게 jsessionid를 돌려주지 않는 설정 - stateless 상태로 설정
+        http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         // 인증/권한 주소 커스터마이징
         http.authorizeHttpRequests(authorize -> authorize
