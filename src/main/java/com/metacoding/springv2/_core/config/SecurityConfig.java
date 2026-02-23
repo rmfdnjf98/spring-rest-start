@@ -26,7 +26,8 @@ public class SecurityConfig {
         http.headers(headers -> headers
                 .frameOptions(frameOptions -> frameOptions.sameOrigin()));
 
-        http.cors(c -> c.disable()); // 시큐리티 자체가 cors를 막고 있어서 이걸 비활성화 (다른 곳에서 허용 조건 코드 작성해둠)
+        // http.cors(c -> c.disable()); // 시큐리티 자체가 cors를 막고 있어서 이걸 비활성화 (다른 곳에서 허용 조건
+        // 코드 작성해둠)
 
         http.exceptionHandling(ex -> ex
                 .authenticationEntryPoint( // 인증 X, session에 객체 없을 경우
